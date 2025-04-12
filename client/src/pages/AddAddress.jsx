@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 
 // Input Field Component
 const InputField = ({ type, placeholder, name, handleChange, address })=>(
-    <input className='w-full px-2 py-2.5 border border-gray-500/30 rounded outline-none text-gray-500 focus:border-primary transition'
+    <input className='w-full px-2 py-2.5 border border-gray-500/30 rounded outline-none text-gray-500 focus:border-[#071F3B] transition'
     type={type}
     placeholder={placeholder}
     onChange={handleChange}
@@ -68,7 +68,7 @@ const AddAddress = () => {
 
   return (
     <div className='mt-16 pb-16'>
-      <p className='text-2xl md:text-3xl text-gray-500'>Add Shipping <span className='font-semibold text-primary'>Address</span></p>
+      <p className='text-2xl md:text-3xl text-gray-500'>Add Shipping <span className='font-semibold text-[#071F3B]'>Address</span></p>
       <div className='flex flex-col-reverse md:flex-row justify-between mt-10'>
             <div className='flex-1 max-w-md'>
              <form onSubmit={onSubmitHandler} className='space-y-3 mt-6 text-sm'>
@@ -93,7 +93,7 @@ const AddAddress = () => {
 
                 <InputField handleChange={handleChange} address={address} name='phone' type="text" placeholder="Phone" />
 
-                <button className='w-full mt-6 bg-primary text-white py-3 hover:bg-primary-dull transition cursor-pointer uppercase'>
+                <button className='w-full mt-6 bg-[#071F3B] text-white py-3 hover:bg-[#071F3B]- transition cursor-pointer uppercase'>
                     Save address
                 </button>
 
