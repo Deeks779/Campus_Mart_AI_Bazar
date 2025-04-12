@@ -3,12 +3,10 @@ import { useAppContext } from "../context/AppContext";
 import { Link, useParams } from "react-router-dom";
 import { assets } from "../assets/assets";
 import ProductCard from "../components/ProductCard";
-import BidSection from "../components/BidSection"; // Adjust path if different
-
 
 const ProductDetails = () => {
 
-    const {products, navigate, currency, addToCart, user} = useAppContext()
+    const {products, navigate, currency, addToCart} = useAppContext()
     const {id} = useParams()
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [thumbnail, setThumbnail] = useState(null);
@@ -34,7 +32,7 @@ const ProductDetails = () => {
                 <Link to={"/"}>Home</Link> /
                 <Link to={"/products"}> Products</Link> /
                 <Link to={`/products/${product.category.toLowerCase()}`}> {product.category}</Link> /
-                <span className="text-primary"> {product.name}</span>
+                <span className="text-[#071F3B]"> {product.name}</span>
             </p>
 
             <div className="flex flex-col md:flex-row gap-16 mt-4">
@@ -76,16 +74,14 @@ const ProductDetails = () => {
                         ))}
                     </ul>
 
-                    <BidSection productId={product._id} userId={user._id} />
-
-                    {/* <div className="flex items-center mt-10 gap-4 text-base">
+                    <div className="flex items-center mt-10 gap-4 text-base">
                         <button onClick={()=> addToCart(product._id)} className="w-full py-3.5 cursor-pointer font-medium bg-gray-100 text-gray-800/80 hover:bg-gray-200 transition" >
                             Add to Cart
                         </button>
-                        <button onClick={()=> {addToCart(product._id); navigate("/cart")}} className="w-full py-3.5 cursor-pointer font-medium bg-primary text-white hover:bg-primary-dull transition" >
+                        <button onClick={()=> {addToCart(product._id); navigate("/cart")}} className="w-full py-3.5 cursor-pointer font-medium bg-[#071F3B] text-white hover:bg-[#071F3B] transition" >
                             Buy now
                         </button>
-                    </div> */}
+                    </div>
                 </div>
             </div>
             {/* ---------- related products -------------- */}

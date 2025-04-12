@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import logo from "./logo.png";
 import search_icon from "./search_icon.svg";
 import remove_icon from "./remove_icon.svg";
 import arrow_right_icon_colored from "./arrow_right_icon_colored.svg";
@@ -20,8 +20,8 @@ import box_icon from "./box_icon.svg";
 import trust_icon from "./trust_icon.svg";
 import black_arrow_icon from "./black_arrow_icon.svg";
 import white_arrow_icon from "./white_arrow_icon.svg";
-import main_banner_bg from "./main_banner_bg.png";
-import main_banner_bg_sm from "./main_banner_bg_sm.png";
+import banner from "./banner.png";
+import banner_sm from "./banner_sm.png";
 import bottom_banner_image from "./bottom_banner_image.png";
 import bottom_banner_image_sm from "./bottom_banner_image_sm.png";
 import add_address_iamge from "./add_address_image.svg";
@@ -69,6 +69,9 @@ import vanilla_muffins_image from "./vanilla_muffins_image.png";
 import quinoa_image from "./quinoa_image.png";
 import brown_rice_image from "./brown_rice_image.png";
 import barley_image from "./barley_image.png";
+import toileteries from "./toileteries.png";
+import electronics from "./electronics.png"
+import stationary from "./stationary.png"
 
 export const assets = {
   logo,
@@ -92,8 +95,8 @@ export const assets = {
   trust_icon,
   black_arrow_icon,
   white_arrow_icon,
-  main_banner_bg,
-  main_banner_bg_sm,
+  banner,
+  banner_sm,
   bottom_banner_image,
   bottom_banner_image_sm,
   add_address_iamge,
@@ -101,47 +104,47 @@ export const assets = {
 };
 
 export const categories = [
+    {
+      text: "Toileteries",
+      path: "Vegetables",
+      image: toileteries,
+      bgColor: "#eff5f9 ", 
+    },
   {
-    text: "Organic veggies",
-    path: "Vegetables",
-    image: organic_vegitable_image,
-    bgColor: "#FEF6DA",
-  },
-  {
-    text: "Fresh Fruits",
+    text: "Daily Essentials",
     path: "Fruits",
     image: fresh_fruits_image,
-    bgColor: "#FEE0E0",
+    bgColor: "#eff5f9",
   },
   {
     text: "Cold Drinks",
     path: "Drinks",
     image: bottles_image,
-    bgColor: "#F0F5DE",
+    bgColor: "#eff5f9",
   },
   {
     text: "Instant Food",
     path: "Instant",
     image: maggi_image,
-    bgColor: "#E1F5EC",
+    bgColor: "#eff5f9",
   },
   {
     text: "Dairy Products",
     path: "Dairy",
     image: dairy_product_image,
-    bgColor: "#FEE6CD",
+    bgColor: "#eff5f9",
   },
   {
-    text: "Bakery & Breads",
+    text: "Stationary",
     path: "Bakery",
-    image: bakery_image,
-    bgColor: "#E0F6FE",
+    image: stationary,
+    bgColor: "#eff5f9",
   },
   {
-    text: "Grains & Cereals",
+    text: "Electronics",
     path: "Grains",
-    image: grain_image,
-    bgColor: "#F1E3F9",
+    image: electronics,
+    bgColor: "#eff5f9",
   },
 ];
 
@@ -149,15 +152,15 @@ export const footerLinks = [
   {
     title: "Quick Links",
     links: [
-      { text: "Home", url: "#" },
-      { text: "Best Sellers", url: "#" },
-      { text: "Offers & Deals", url: "#" },
+      { text: "Stationery", url: "#" },
+      { text: "Daily Essentials", url: "#" },
+      { text: "Decor", url: "#" },
       { text: "Contact Us", url: "#" },
       { text: "FAQs", url: "#" },
     ],
   },
   {
-    title: "Need help?",
+    title: "Need Help on Campus?",
     links: [
       { text: "Delivery Information", url: "#" },
       { text: "Return & Refund Policy", url: "#" },
@@ -180,13 +183,13 @@ export const footerLinks = [
 export const features = [
   {
     icon: delivery_truck_icon,
-    title: "Fastest Delivery",
-    description: "Groceries delivered in under 30 minutes.",
+    title: "Fast In-Hostel Delivery",
+    description: "Items delivered swiftly within your hostel block.",
   },
   {
     icon: leaf_icon,
-    title: "Freshness Guaranteed",
-    description: "Fresh produce straight from the source.",
+    title: "Student-Friendly Pricing",
+    description: "Find essentials at fair, budget-conscious prices",
   },
   {
     icon: coin_icon,
@@ -195,8 +198,8 @@ export const features = [
   },
   {
     icon: trust_icon,
-    title: "Trusted by Thousands",
-    description: "Loved by 10,000+ happy customers.",
+    title: "Earn & Save",
+    description: "Sell unused items and earn money while helping others.",
   },
 ];
 

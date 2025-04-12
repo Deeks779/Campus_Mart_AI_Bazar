@@ -22,17 +22,17 @@ const ProductCard = ({product}) => {
                     <p>(4)</p>
                 </div>
                 <div className="flex items-end justify-between mt-3">
-                    <p className="md:text-xl text-base font-medium text-primary">
+                    <p className="md:text-xl text-base font-medium text-white">
                         {currency}{product.offerPrice}{" "} <span className="text-gray-500/60 md:text-sm text-xs line-through">{currency}{product.price}</span>
                     </p>
-                    <div onClick={(e) => { e.stopPropagation(); }} className="text-primary">
+                    <div onClick={(e) => { e.stopPropagation(); }} className="text-white">
                         {!cartItems[product._id] ? (
-                            <button className="flex items-center justify-center gap-1 bg-primary/10 border border-primary/40 md:w-[80px] w-[64px] h-[34px] rounded cursor-pointer" onClick={() => addToCart(product._id)} >
+                            <button className="flex items-center justify-center gap-1 bg-[#071F3B] border border-[#071F3B]/40 md:w-[80px] w-[64px] h-[34px] rounded cursor-pointer" onClick={() => addToCart(product._id)} >
                                 <img src={assets.cart_icon} alt="cart_icon"/>
                                 Add
                             </button>
                         ) : (
-                            <div className="flex items-center justify-center gap-2 md:w-20 w-16 h-[34px] bg-primary/25 rounded select-none">
+                            <div className="flex items-center justify-center gap-2 md:w-20 w-16 h-[34px] bg-[#071F3B]/25 rounded select-none">
                                 <button onClick={() => {removeFromCart(product._id)}} className="cursor-pointer text-md px-2 h-full" >
                                     -
                                 </button>
