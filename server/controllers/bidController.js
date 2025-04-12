@@ -80,3 +80,15 @@ export const rejectBid = async (req, res) => {
     res.status(500).json({ success: false, message: err.message });
   }
 };
+export const getBidsByUser = async (req, res) => {
+  try {
+    const userId = req.user._id
+    const bids = await Bid.find({ userId })
+      .populate("productId", "title thumbnail offerPrice")
+      .sort({ createdAt: -1 })
+
+    res.status(200).json({ success: true, bids })
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message })
+  }
+}
