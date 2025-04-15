@@ -25,7 +25,7 @@ const ProductCard = ({product}) => {
                     <p className="md:text-xl text-base font-medium text-white">
                         {currency}{product.offerPrice}{" "} <span className="text-gray-500/60 md:text-sm text-xs line-through">{currency}{product.price}</span>
                     </p>
-                    <div onClick={(e) => { e.stopPropagation(); }} className="text-white">
+                    {/* <div onClick={(e) => { e.stopPropagation(); }} className="text-white">
                         {!cartItems[product._id] ? (
                             <button className="flex items-center justify-center gap-1 bg-[#071F3B] border border-[#071F3B]/40 md:w-[80px] w-[64px] h-[34px] rounded cursor-pointer" onClick={() => addToCart(product._id)} >
                                 <img src={assets.cart_icon} alt="cart_icon"/>
@@ -42,7 +42,7 @@ const ProductCard = ({product}) => {
                                 </button>
                             </div>
                         )}
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

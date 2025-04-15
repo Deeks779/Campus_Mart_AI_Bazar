@@ -82,7 +82,7 @@ export const rejectBid = async (req, res) => {
 };
 export const getBidsByUser = async (req, res) => {
   try {
-    const userId = req.user._id
+    const userId = req.body.userId;
     const bids = await Bid.find({ userId })
       .populate("productId", "title thumbnail offerPrice")
       .sort({ createdAt: -1 })

@@ -10,16 +10,56 @@ const Cart = () => {
     const [showAddress, setShowAddress] = useState(false)
     const [selectedAddress, setSelectedAddress] = useState(null)
     const [paymentOption, setPaymentOption] = useState("COD")
+    const [bids, setBids] = useState([]);
 
-    const getCart = ()=>{
-        let tempArray = []
-        for(const key in cartItems){
-            const product = products.find((item)=>item._id === key)
-            product.quantity = cartItems[key]
-            tempArray.push(product)
+    useEffect(() => {
+    
+        fetchAcceptedBids();
+    }, []);
+    const fetchAcceptedBids = async () => {
+        try {
+          const response = await axios.get("/api/bids/user", {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          });
+          console.log("Bids:", response.data.bids); // 👈 See what comes back
+          setBids(response.data.bids); // assuming you have setBids in state
+        } catch (error) {
+          console.error("Error fetching bids:", error);
         }
-        setCartArray(tempArray)
-    }
+      };
+      
+    
+    const getCart = () => {
+        let tempArray = [];
+      
+        for (const key in cartItems) {
+          const product = products.find((item) => item._id === key);
+      
+          if (!product) continue;
+      
+          // Set quantity from cart
+          product.quantity = cartItems[key];
+      
+          // Check if there's an accepted bid for this product
+          const acceptedBid = bids?.find(
+            (bid) => bid.productId._id === key && bid.status === "accepted"
+          );
+      
+          if (acceptedBid) {
+            // If there's an accepted bid, override the price
+            product.price = acceptedBid.amount;
+            product.fromBid = true; // optional: flag to indicate it's from bid
+          }
+      
+          tempArray.push(product);
+        }
+      
+        setCartArray(tempArray);
+        console.log();
+        
+      };
 
     const getUserAddress = async ()=>{
         try {
@@ -78,11 +118,12 @@ const Cart = () => {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         if(products.length > 0 && cartItems){
-            getCart()
+            getCart();
         }
-    },[products, cartItems])
+    }, [products, cartItems, bids]);
+    
 
 
     useEffect(()=>{
@@ -91,6 +132,21 @@ const Cart = () => {
         }
     },[user])
     
+    const getCartAmount1 = () => {
+        let totalAmount = 0;
+      
+        // Loop through each product in the cartArray
+        cartArray.forEach((product) => {
+          // Check if the product is from a bid and use bid price, otherwise use the regular price
+          const price = product.fromBid ? product.price : product.offerPrice;
+      
+          // Add the total amount (quantity * price) for each product
+          totalAmount += price * product.quantity;
+        });
+      
+        return totalAmount;
+      };
+
     return products.length > 0 && cartItems ? (
         <div className="flex flex-col md:flex-row mt-16">
             <div className='flex-1 max-w-4xl'>
@@ -134,6 +190,28 @@ const Cart = () => {
                     </div>)
                 )}
 
+<div className="mt-8">
+  <h2 className="text-xl font-medium">My Bids</h2>
+  <hr className="border-gray-300 my-5" />
+
+  {bids.length > 0 ? (
+    bids
+      .filter((bid) => bid.status === "accepted") // Filter for only accepted bids
+      .map((bid, index) => (
+        <div key={index} className="border-b py-4">
+          <p><strong>Product:</strong> {bid.productId?._id}</p>
+          <p><strong>Amount:</strong> {currency}{bid.amount}</p>
+          <p><strong>Status:</strong> {bid.status}</p>
+          {/* <p><strong>Bid Price:</strong> {currency}{bid.amount}</p> */}
+          {/* <p><strong>Date:</strong> {new Date(bid.timestamp).toLocaleString()}</p> */}
+        </div>
+      ))
+  ) : (
+    <p>No accepted bids placed yet.</p> // Show a message if there are no accepted bids
+  )}
+</div>
+
+                
                 <button onClick={()=> {navigate("/products"); scrollTo(0,0)}} className="group cursor-pointer flex items-center mt-8 gap-2 text-[#071F3B] font-medium">
                     <img className="group-hover:-translate-x-1 transition" src={assets.arrow_right_icon_colored} alt="arrow" />
                     Continue Shopping
@@ -178,17 +256,17 @@ const Cart = () => {
 
                 <div className="text-gray-500 mt-4 space-y-2">
                     <p className="flex justify-between">
-                        <span>Price</span><span>{currency}{getCartAmount()}</span>
+                        <span>Price</span><span>{currency}{getCartAmount1()}</span>
                     </p>
                     <p className="flex justify-between">
                         <span>Shipping Fee</span><span className="text-green-600">Free</span>
                     </p>
                     <p className="flex justify-between">
-                        <span>Tax (2%)</span><span>{currency}{getCartAmount() * 2 / 100}</span>
+                        <span>Tax (2%)</span><span>{currency}{getCartAmount1() * 2 / 100}</span>
                     </p>
                     <p className="flex justify-between text-lg font-medium mt-3">
                         <span>Total Amount:</span><span>
-                            {currency}{getCartAmount() + getCartAmount() * 2 / 100}</span>
+                            {currency}{getCartAmount1() + getCartAmount1() * 2 / 100}</span>
                     </p>
                 </div>
 

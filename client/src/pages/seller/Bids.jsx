@@ -9,6 +9,8 @@ const Bids = () => {
     try {
       const res = await axios.get("/api/bids/seller");
       setBids(res.data.bids);
+      // console.log(bids);
+      
     } catch (err) {
     //   toast.error("Failed to load bids");
     console.error(err.response?.data || err.message);
@@ -40,7 +42,7 @@ const Bids = () => {
           {bids.map((bid) => (
             <div key={bid._id} className="border p-4 rounded shadow flex justify-between items-center bg-white">
               <div>
-                <p><strong>Product:</strong> {bid.productId?.title}</p>
+                <p><strong>Product:</strong> {bid.productId?._id}</p>
                 <p><strong>Bidder:</strong> {bid.userId?.name}</p>
                 <p><strong>Amount:</strong> ₹{bid.amount}</p>
                 <p><strong>Status:</strong> {bid.status}</p>

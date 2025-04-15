@@ -9,7 +9,7 @@ const MyOrders = () => {
 
   const fetchMyBids = async () => {
     try {
-      const { data } = await axios.get('/api/bid/user')
+      const { data } = await axios.get('api/bids/user')
       if (data.success) {
         setMyBids(data.bids)
       }
@@ -72,7 +72,8 @@ const MyOrders = () => {
 
             {bid.status === 'accepted' && (
               <button
-                onClick={() => handleProceedToPay(bid)}
+                // onClick={() => handleProceedToPay(bid)}
+                onClick={() => navigate("/cart")}
                 className='mt-4 md:mt-0 bg-[#071F3B] hover:bg-[#093465] text-white px-4 py-2 rounded-lg transition'
               >
                 Proceed to Pay
