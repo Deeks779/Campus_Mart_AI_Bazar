@@ -86,12 +86,4 @@ Fill in the technologies you used for this project.
     ```
     > Open `http://localhost:3000` to view the application in your browser.
 
-## 📜 License
 
-This project is licensed under the `[Your License, e.g., MIT]` License. See the `LICENSE` file for details.
-
-## 👤 Author
-
-**Deeks779**
-* **GitHub:** [@Deeks779](https://github.com/Deeks779)
-* **LinkedIn:** `[Link to your LinkedIn profile]`
